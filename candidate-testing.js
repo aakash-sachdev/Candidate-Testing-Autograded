@@ -28,11 +28,11 @@ function askQuestion() {
   for (let i = 0; i < questions.length; i++) {
     let userAnswer = input.question(questions[i]);
     candidateAnswers.push(userAnswer);
-    // candidateAnswers[i] = input.question(questions[i]);
+    //  candidateAnswers[i] = input.question(questions[i]);
   }
 }
 
-function gradeQuiz() {
+function gradeQuiz(candidateAnswers) {
   // console.log(candidateAnswers)
   // TODO 1.2c: Let the candidate know if they have answered the question correctly or incorrectly // 
   // if (candidateAnswer === "Sally Ride") {
@@ -43,8 +43,22 @@ function gradeQuiz() {
   console.log(`Your responses : ${candidateAnswers} and correct responses : ${correctAnswers}`);
 
 
-  let grade;  //TODO 3.2 use this variable to calculate the candidates score.
-
+  let grade = 0;  //TODO 3.2 use this variable to calculate the candidates score.
+  let numOfCorrect = 0;
+  for( i=0; i<correctAnswers.length; i++){
+    if (candidateAnswers[i].toLowerCase() === correctAnswers[i].toLowerCase()){
+      // grade += 20;
+       numOfCorrect++;
+    } 
+  } 
+  grade = numOfCorrect/questions.length *100;
+  
+  if (grade >= 80) {
+    console.log( `Congratulations! You have passed the quiz with ${grade}%`);
+  } else {
+    console.log(`Sorry, you have failed the quiz. Better luck next time.`);
+  }
+  console.log(grade);
 
   return grade;
 }
